@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="themeSlider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#themeSlider" data-slide-to="1"></li>
+        <li data-target="#themeSlider" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="imgOverlay"></div>
+            <img src="~/img/pots-with-vegetables.jpg" style="width: 100%; height: 500px" alt="First slide">
+            <div class="carousel-caption">
+                <h3>Congolese Foods</h3>
+                @*<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img src="~/img/still-life-with-cutting-board-wine-glasses-and-strawberries.jpg" style="width: 100%; height: 500px" alt="Second slide">
+            <div class="carousel-caption">
+                <h3>South African Foods</h3>
+                @*<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img src="~/img/woman-eating-dinner-in-restaurant.jpg" style="width: 100%; height: 500px" alt="Third slide">
+            <div class="carousel-caption">
+                <h3>Nigerian Foods</h3>
+                @*<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
+            </div>
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+        <span class="fa fa-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#themeSlider" data-slide="next">
+        <span class="fa fa-chevron-right"></span>
+    </a>
+
+    @*<div class="main-text hidden-xs hidden-sm">
+        <div class="col-md-12 text-center">
+            <h1>Static Headline And Content</h1>
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+            <div class="clearfix"></div>
+            <div class="carousel-btns">
+                <a class="btn btn-md btn-default" href="">Login</a>
+                <a class="btn btn-md btn-default" href="">Registration</a>
+            </div>
+        </div>
+    </div>*@
+</div>

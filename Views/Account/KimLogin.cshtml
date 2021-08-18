@@ -1,0 +1,64 @@
+﻿@model OrderItem.ViewModel.AccountViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Kim's Food Online Ordering</title>
+    <!-- Meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Kim's Food Sign up & login" />
+    <script>
+        addEventListener("load", function () { setTimeout(hideURLbar, 0); }, false); function hideURLbar() { window.scrollTo(0, 1); }
+    </script>
+    <link href="~/KimLogin/css/style.css" rel='stylesheet' type='text/css' media="all">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+</head>
+<body>
+    <div class="mid-class">
+        <div class="art-right-w3ls">
+            <h2>Sign In Form</h2>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="main">
+                    <div class="form-left-to-w3l">
+                        @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control", Type="email" ,@autocomplete = "off", @placeholder = "Email Address" } })
+                        @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-left-to-w3l ">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", Type="password", @placeholder = "Password" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="btnn">
+                    <button type="submit">Sign In</button>
+                </div>
+                <div class="w3layouts_more-buttn">
+                    <h3>
+                        Don't Have an account..?
+                        <a href="">
+                            @Html.ActionLink("Sign Up Here", "KimSignUp")
+                        </a>
+                    </h3>
+                </div>
+            }
+        </div>
+        <div class="art-left-w3ls">
+            <h1 class="header-w3ls">
+                Kim's Food sign up & login Form
+            </h1>
+        </div>
+    </div>
+    <footer class="bottem-wthree-footer">
+        <p>
+            © 2020 Kims Food Catering. All Rights Reserved | Design by Apoulah
+        </p>
+    </footer>
+</body>
+</html>

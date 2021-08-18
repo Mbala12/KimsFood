@@ -1,0 +1,31 @@
+﻿@model IEnumerable<OrderItem.ViewModel.OrderDetailsViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        LoadOrderDetails();
+    });
+
+    function LoadOrderDetails() {
+
+        $.ajax({
+            async: true,
+            data: 'GET',
+            dataType: 'HTML',
+            contentType: false,
+            processData: false,
+            url: '/OrderDetail/GetAllOrderDetails',
+            success: function (data) {
+                $("#divLoadOrderDetails").html(data);
+            },
+            error: function () {
+                alert('There is some problem to process your request. Please try some other time.');
+            }
+        });
+    }
+</script>
+<div id="divLoadOrderDetails"></div>

@@ -1,0 +1,232 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kim's Food Catering</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/mainpage/css/style.css">
+</head>
+<body>
+    <!-- header -->
+    <header id="home">
+        <div class="container">
+            <div class="hamburger-menu">
+                <i class="fa fa-bars toggle"></i>
+                <i class="fa fa-times toggle"></i>
+            </div>
+            <nav class="d-flex align-items-center justify-content-center justify-content-lg-between">
+                <a href="index.html" class="navbar-brand">
+                    <img src="~/Content/mainpage/images/b2.jpg" alt="" class="img-fluid">
+                </a>
+                <ul class="nav-list text-center p-0">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#menu" class="nav-link">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#chef" class="nav-link">Our Team</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="hero-text w-100 text-white px-2 px-sm-0">
+                <h1 class="display-3">Welcome At</h1>
+                <h2>Kim's Food Catering</h2>
+                <p class="lead mb-4">Best restaurant with good foods tasting.</p>
+                <a href="#about" class="btn px-5 mr-2">Explore</a>
+                <a href= "@Url.Action("Index","Welcome")" class="btn px-5 ml-2">Place Your Order</a>
+            </div>
+        </div>
+    </header>
+    <!-- End header -->
+    <!-- Main -->
+    <main>
+        <section class="about" id="about">
+            <div class="container">
+                <div class="row align-items-lg-center">
+                    <div class="col-12 col-md-6 text-center text-md-left" data-aos="fade-right">
+                        <div class="section-heading mb-3">
+                            <h4>Discover</h4>
+                            <h1 class="display-4">Our Story</h1>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam.
+                        </p>
+                        <a href="#menu" class="btn mt-4 mb-5 mb-md-0">Find out more</a>
+                    </div>
+                    <div class="col-12 col-md-6" data-aos="fade-left">
+                        <img class="img-fluid" src="~/Content/mainpage/images/3.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="menu" id="menu">
+            <div class="container">
+                <div class="row text-center text-white">
+                    <div class="col-12 col-md-4 mb-4 mb-md-0" data-aos="fade-up">
+                        <div class="shop-info ">
+                            <i class="fa fa-history"></i>
+                            <h1>Hours of Operation</h1>
+                            <p>Tuesday to Saturday : 10:00am - 9:30pm</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mb-4 mb-md-0" data-aos="fade-down">
+                        <div class="shop-info ">
+                            <i class="fa fa-map-marker"></i>
+                            <h1>Our Location</h1>
+                            <address>
+                                15 Casuarina Street, Kempton Park <br>
+                                Johannesburg, South Africa
+                            </address>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mb-4 mb-md-0" data-aos="fade-right">
+                        <div class="shop-info ">
+                            <i class="fa fa-mobile"></i>
+                            <h1>Get In Touch</h1>
+                            <p>Phone # : (073) 849-3596</p>
+                            <p>Email : kimsfood20@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-5">
+            </div>
+            <div class="container-fluid p-0">
+                <div class="section-heading my-5 text-center">
+                    <h4 class="text-white">Our Tasty Food</h4>
+                    <h1 class="display-4">The Menu</h1>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-1 order-xl-1">
+                        <img class="img-fluid" src="~/Content/mainpage/images/2.jpg" alt="">
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-2 order-xl-2 point-left">
+                        <div class="menu-item-desc">
+                            <h6>R59.99</h6>
+                            <h1>The Burger</h1>
+                            <p>This burger is so amazing! I recommend you all to try it.</p>
+                            <a href="" class="btn mt-3 d-none d-xl-block">Learn more</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-4 order-xl-3">
+                        <img class="img-fluid" src="~/Content/mainpage/images/4.jpg" alt="">
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-3 order-xl-4 point-left">
+                        <div class="menu-item-desc">
+                            <h6>R89.99</h6>
+                            <h1>The Marcaroni</h1>
+                            <p>This burger is so amazing! I recommend you all to try it.</p>
+                            <a href="" class="btn mt-3 d-none d-xl-block">Learn more</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-5 order-xl-5">
+                        <img class="img-fluid" src="~/Content/mainpage/images/5.jpg" alt="">
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-6 order-xl-6 point-left">
+                        <div class="menu-item-desc">
+                            <h6>R79.89</h6>
+                            <h1>The Spices</h1>
+                            <p>This burger is so amazing! I recommend you all to try it.</p>
+                            <a href="" class="btn mt-3 d-none d-xl-block">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-2 order-xl-2">
+                        <img class="img-fluid" src="~/Content/mainpage/images/6.jpg" alt="">
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-1 order-xl-1 point-right">
+                        <div class="menu-item-desc">
+                            <h6>R120</h6>
+                            <h1>The Breakfast</h1>
+                            <p>This burger is so amazing! I recommend you all to try it.</p>
+                            <a href="" class="btn mt-3 d-none d-xl-block">Learn more</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-3 order-xl-4">
+                        <img class="img-fluid" src="~/Content/mainpage/images/7.jpg" alt="">
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-5 order-xl-3 point-right">
+                        <div class="menu-item-desc">
+                            <h6>R49</h6>
+                            <h1>All Spicies</h1>
+                            <p>This burger is so amazing! I recommend you all to try it.</p>
+                            <a href="" class="btn mt-3 d-none d-xl-block">Learn more</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-6 order-xl-6">
+                        <img class="img-fluid" src="~/Content/mainpage/images/8.jpg" alt="">
+                    </div>
+                    <div class="col-12 col-sm-6 col-xl-2 order-sm-5 order-xl-5 point-right">
+                        <div class="menu-item-desc">
+                            <h6>R29</h6>
+                            <h1>The Spicy</h1>
+                            <p>This burger is so amazing! I recommend you all to try it.</p>
+                            <a href="" class="btn mt-3 d-none d-xl-block">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="chef" id="chef">
+            <div class="container">
+                <div class="section-heading my-5 text-center">
+                    <h4>Meet</h4>
+                    <h1 class="display4">Our Chefs</h1>
+                </div>
+                <div class="row text-center">
+                    <div class="col-12 col-md-4" data-aos="fade-right">
+                        <img class="img-fluid" src="~/Content/mainpage/images/b2.jpg" alt="">
+                        <div class="card-body">
+                            <h1>Christian Kimbobe</h1>
+                            <h6>Malewa Specialist</h6>
+                            <p>Kims is an awesome cooker chef!</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4" data-aos="fade-up">
+                        <img class="img-fluid" src="~/Content/mainpage/images/b2.jpg" alt="">
+                        <div class="card-body">
+                            <h1>Benny Banks</h1>
+                            <h6>Malewa Specialist</h6>
+                            <p>Banks is an awesome cooker chef!</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4" data-aos="fade-left">
+                        <img class="img-fluid" src="~/Content/mainpage/images/b2.jpg" alt="">
+                        <div class="card-body">
+                            <h1>Diane Barhins</h1>
+                            <h6>Malewa Specialist</h6>
+                            <p>Barhins is an awesome cooker chef!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="text-center py-5">
+            <p>&copy; 2020. All Rights Reserved by <span>Kim's Food Catering</span>.</p>
+        </footer>
+
+    </main>
+    <!-- End Main -->
+    <script src="https://kit.fontawesome.com/ba33ab971e.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="~/Content/mainpage/js/scripts.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+﻿@*@using PagedList.Mvc
+@using PagedList*@
+
+@model IEnumerable<OrderItem.ViewModel.OrderViewModel>
+@*@model IPagedList<OrderItem.ViewModel.OrderViewModel>*@
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        function Contains(val1, val2) {
+            if (val1.indexOf(val2) != -1)
+                return true;
+        }
+        $("#search").keyup(function () {
+            var searchText = $("#search").val().toLowerCase();
+            $(".search").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        });
+
+    });
+
+</script>
+
+<div class="container" id="divSearch" style="font-family:'Century Gothic'">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off" />
+        </div>
+    </div>
+</div>
+
+<table style="width: 100%" class="table table-striped">
+    <thead class="bg-primary" style="font-family:'Century Gothic'">
+        <tr>
+            <th>
+                Reference No.
+            </th>
+            @*<th>
+                    Order Date
+                </th>*@
+            @*<th>
+                    Daily Date
+                </th>*@
+            <th>
+                Payment Type
+            </th>
+            <th>
+                Transport
+            </th>
+            <th>
+                Distance
+            </th>
+            <th>
+                Final Total
+            </th>
+            <th>
+                Client Name
+            </th>
+            <th>
+                Client Phone No.
+            </th>
+        </tr>
+    </thead>
+    @*@if(Model.Count == 0) { <h2> No Record Found</h2>}
+        else { }*@
+    <tbody style="font-family:'Century Gothic'">
+        @foreach (var item in Model)
+        {
+            <tr class="search">
+                <td>
+                    @item.OrderNumber
+                </td>
+                @*<td>
+                        @item.OrderDate
+                    </td>*@
+                @*<td>
+                        @item.DailyDate
+                    </td>*@
+                <td>
+                    @item.PaymentName.ToUpper()
+                </td>
+                <td>
+                    R @item.Cost
+                </td>
+                <td>
+                    @item.Time min.
+                </td>
+                <td>
+                    R @item.FinalTotal
+                </td>
+                <td>
+                    @item.CustomerName.ToUpper()
+                </td>
+                <td>
+                    @item.CustomerPhone
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*@Html.PagedListPager((IPagedList)Model, i => Url.Action("GetAllOrders", new { i }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "divLoadOrders" }))*@

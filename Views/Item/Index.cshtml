@@ -1,0 +1,310 @@
+﻿@model Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Item').val(0);
+
+        $("#btnSave").click(function () {
+            AddItem();
+            LoadItemDetails();
+            $("#divLoadOrderDetails").hide();
+            $("#divLoadOrders").hide();
+        });
+        $("#btnClose").click(function () {
+            LoadItemDetails();
+        });
+
+        $("#btnItemDetails").click(function () {
+            $("#divLoadItemDetails").show();
+            LoadItemDetails();
+            $("#divLoadOrderDetails").hide();
+            $("#divLoadOrders").hide();
+            $('#divLoadDailyOrders').hide();
+        });
+
+        $("#btnOrderDetails").click(function () {
+            $("#divLoadOrderDetails").show();
+            LoadOrderDetails();
+            $("#divLoadItemDetails").hide();
+            $("#divLoadOrders").hide();
+            $('#divLoadDailyOrders').hide();
+        });
+
+        $("#btnOrders").click(function () {
+            $("#divLoadOrders").show();
+            LoadOrders();
+            $("#divLoadItemDetails").hide();
+            $("#divLoadOrderDetails").hide();
+            $('#divLoadDailyOrders').hide();
+        });
+
+        $('#btnDailyOrders').click(function () {
+            $('#divLoadDailyOrders').show();
+            LoadDailyOrders();
+            $("#divLoadItemDetails").hide();
+            $("#divLoadOrderDetails").hide();
+            $("#divLoadOrders").hide();
+        });
+    });
+
+    function RemoveItem(itemID) {
+        var result = confirm('Are you sure You want to delete this Item ?');
+        if (result === false) {
+            return false;
+        }
+        else {
+            $.ajax({
+                async: true,
+                dataType: 'JSON',
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                data: { itemID: itemID },
+                url: '/Item/RemoveItemDetails',
+                success: function (data) {
+                    if (data.success === true) {
+                        alert(data.message);
+                        LoadItemDetails();
+                    }
+                },
+                error: function () {
+                    alert('There is some problem to process your request. Please try some other time.');
+                }
+            });
+        }
+    }
+
+    function EditItem(itemID) {
+
+        $.ajax({
+            async: true,
+            dataType: 'JSON',
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            data: { itemID: itemID },
+            url: '/Item/EditItemDetails',
+            success: function (data) {
+                $('#textItemName').val(data.ItemName);
+                $('#textItemPrice').val(parseFloat(data.ItemPrice).toFixed(2));
+                $('#Category').val(data.CategoryID);
+                $("#ImgItem").attr('src', "../Images/" + data.ImagePath);
+                $('#divAddItem').modal({ show: true });
+                $('#Item').val(data.ItemID);
+                $('#btnSave').text("Update");
+            },
+            error: function () {
+                alert('There is some problem to process your request. Please try some other time.');
+            }
+        });
+    }
+
+    function LoadOrders() {
+
+        $.ajax({
+            async: true,
+            data: 'GET',
+            dataType: 'HTML',
+            contentType: false,
+            processData: false,
+            url: '/Item/GetAllOrders',
+            success: function (data) {
+                $("#divLoadOrders").html(data);
+            },
+            error: function () {
+                alert('There is some problem to process your request. Please try some other time.');
+            }
+        });
+    }
+
+    function LoadDailyOrders() {
+
+        $.ajax({
+            async: true,
+            data: 'GET',
+            dataType: 'HTML',
+            contentType: false,
+            processData: false,
+            url: '/Item/GetAllDailyOrders',
+            success: function (data) {
+                $("#divLoadDailyOrders").html(data);
+            },
+            error: function () {
+                alert('There is some problem to process your request. Please try some other time.');
+            }
+        });
+    }
+
+    function LoadOrderDetails() {
+
+        $.ajax({
+            async: true,
+            data: 'GET',
+            dataType: 'HTML',
+            contentType: false,
+            processData: false,
+            url: '/Item/GetAllOrderDetails',
+            success: function (data) {
+                $("#divLoadOrderDetails").html(data);
+            },
+            error: function () {
+                alert('There is some problem to process your request. Please try some other time.');
+            }
+        });
+    }
+
+    function LoadItemDetails() {
+
+        $.ajax({
+            async: true,
+            data: 'GET',
+            dataType: 'HTML',
+            contentType: false,
+            processData: false,
+            url: '/Item/GetAllItems',
+            success: function (data) {
+                $("#divLoadItemDetails").html(data);
+            },
+            error: function () {
+                alert('There is some problem to process your request. Please try some other time.');
+            }
+        });
+    }
+
+    function AddItem() {
+        //alert('It is working');
+        var formData = new FormData;
+        formData.append("ItemID", $('#Item').val());
+        formData.append("CategoryID", $("#Category").val());
+        formData.append("ItemName", $("#textItemName").val());
+        formData.append("ItemPrice", $("#textItemPrice").val());
+        formData.append("ImagePath", $("#textImage").get(0).files[0]);
+
+        if ($("#textItemName").val() == '') {
+            //$("#divLoadItemDetails").show();
+            alert('Please Enter an Item Name'); $("#textItemName").focus();
+        }
+        else if ($("#textItemPrice").val() == '') {
+            //$("#divLoadItemDetails").show();
+            alert('Please Enter a Item Price'); $("#textItemPrice").focus();
+        }
+        //else if ($("#textImage").val() == '') {
+        //    alert('Please pick an image if you have one'); $("#textImage").focus();
+        //}
+        else {
+            $.ajax({
+                async: true,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (data) {
+                    if (data.success === true) {
+                        alert(data.message);
+                        ResetFields();
+                        LoadItemDetails();
+                    }
+                },
+                error: function () {
+                    alert('There is some problem to process your request. Please try some other time.');
+                }
+            });
+
+        }
+    }
+
+    function ResetFields() {
+        $('#Item').val(0);
+        $("#textItemName").val('');
+        $("#textItemPrice").val('');
+        $("#textImage").val('');
+        $("#ImgItem").removeAttr('src');
+        $("#textItemName").focus();
+        $('#btnSave').text("Save");
+    }
+
+    function DisplayImage(result) {
+        if (result.files && result.files[0]) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                $("#ImgItem").attr('src', e.target.result);
+            }
+            fileReader.readAsDataURL(result.files[0]);
+        }
+    }
+</script>
+
+<style>
+    span {
+        color: #ecb731;
+    }
+</style>
+
+<h2 class="text-capitalize text-center" style="font-family:'Century Gothic'; font-weight:800; padding-top: 15px; margin-bottom: 10px">
+    <span>K</span>im's <span>F</span>ood <span>O</span>nline <span>O</span>rder (<span>I</span>tems)
+</h2>
+
+<div style="margin-top: 15px; font-family:'Century Gothic'">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#divAddItem" data-backdrop="static" data-keyboard="false" id="btnItemDetails">Add New Item</button>
+    <button type="button" class="btn btn-primary" id="btnOrderDetails">Show Order Details</button>
+    <button type="button" class="btn btn-primary" id="btnOrders">Show All Orders</button>
+    @*<button type="button" class="btn btn-primary" id="btnDailyOrders">Daily Orders</button>*@
+</div>
+
+<div id="divAddItem" class="modal fade" role="dialog" style="font-family:'Century Gothic'">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="text-align:center">NEW ITEM - Kim's Food Online Order</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    @Html.HiddenFor(model => model.Item3, new { @id = "Item" })
+                    <div class="form-group">
+                        <b>Category :</b>
+                        @Html.DropDownList("Category", new SelectList(Model.Item1, "Value", "Text"), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <b>Item Name :</b>
+                        <input type="text" id="textItemName" placeholder="Name of the Item" name="ItemName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <b>Item Price :</b>
+                        <input type="text" id="textItemPrice" placeholder="0.00" name="ItemPrice" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <b>Item Image :</b>
+                        <input type="file" id="textImage" placeholder="Load Image" name="ImagePath" class="form-control" onchange="DisplayImage(this)" />
+                        <img id="ImgItem" height="200" width="270" style="border: solid; margin-top: 15px" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSave" class="btn btn-success">Save</button> &nbsp;
+                <button type="button" id="btnClose" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top:20px"></div>
+
+<div id="divLoadItemDetails"></div>
+
+<div id="divLoadOrderDetails">
+    <div style="margin-top:50px"></div>
+</div>
+
+<div id="divLoadOrders">
+    <div style="margin-top:50px"></div>
+</div>
+
+<div id="divLoadDailyOrders">
+    <div style="margin-top:50px"></div>
+</div>
+

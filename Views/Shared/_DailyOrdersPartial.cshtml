@@ -1,0 +1,86 @@
+﻿@*@model IEnumerable<OrderItem.ViewModel.DailyOrdersViewModel>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        function Contains(val1, val2)
+        {
+            if (val1.indexOf(val2) != -1)
+            return true;
+        }
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        });
+
+    });
+
+</script>
+
+<div class="container" id="divSearch" style="font-family:'Century Gothic'">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" id="Search" placeholder="Search" class="form-control" autocomplete="off" />
+        </div>
+    </div>
+</div>
+
+<table style="width: 100%" class="table table-striped">
+    <thead class="bg-primary" style="font-family:'Century Gothic'">
+        <tr>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Item Name
+            </th>
+            <th>
+                Unit Price
+            </th>
+            <th>
+                Total Quantity
+            </th>
+            <th>
+                Final Total
+            </th>
+        </tr>
+    </thead>
+    <tbody style="font-family:'Century Gothic'">
+        @foreach (var item in Model)
+        {
+        <tr class="Search">
+            <td>
+                @item.DailyDate
+            </td>
+            <td>
+                <img src="@Url.Content("~/Images/"+item.Image)" width="35" height="35" class="img-responsive" />
+            </td>
+            <td>
+                @item.ItemName
+            </td>
+            <td>
+                @item.UnitPrice
+            </td>
+            <td>
+                @item.SumQuantity
+            </td>
+            <td>
+                @item.SumUnitPrice
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>*@
+

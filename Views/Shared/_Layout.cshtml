@@ -1,0 +1,106 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim's Food Online Ordering</title>
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <style>
+        span {
+            color: #ecb731;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Kim's Food Catering", "Index", "Welcome", new { area = "" }, new { @class = "navbar-brand", style = "font-family:'Century Gothic'; font-weight: 700; color: #ecb731" })
+            </div>
+            <div class="navbar-collapse collapse">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (Session["role"].ToString() == "admin")
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Welcome")</li>
+                            <li>@Html.ActionLink("About", "About", "Welcome")</li>
+                            <li>@Html.ActionLink("Location", "Location", "Welcome")</li>
+                            <li>@Html.ActionLink("Activities", "Index", "Item")</li>
+                            @*<li>@Html.ActionLink("Ordering", "Index", "Home")</li>*@
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right"> 
+                            <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Welcome")</li>
+                            <li>@Html.ActionLink("About", "About", "Welcome")</li>
+                            <li>@Html.ActionLink("Location", "Location", "Welcome")</li>
+                            @*<li>@Html.ActionLink("Item", "Index", "Item")</li>*@
+                            <li>@Html.ActionLink("Place Your Order", "Index", "Home")</li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
+                        </ul>
+                    }
+                }
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Welcome")</li>
+                        <li>@Html.ActionLink("About", "About", "Welcome")</li>
+                        <li>@Html.ActionLink("Location", "Location", "Welcome")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Register", "KimSignUp", "Account")</li>
+                        <li>@Html.ActionLink("Login", "KimLogin", "Account")</li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        @*<footer>
+                <p>&copy; @DateTime.Now.Year <b>ISA</b> &amp; <b>Sollers</b> - <b><span>K</span>im's <span>F</span>ood <span>O</span>nline <span>O</span>rdering</b>. All Rights Reserved</p>
+            </footer>*@
+
+        <div class="footer-bottom" style="font-family:'Century Gothic'">
+            <div class="container">
+                <p class="pull-left"> Copyright © 2020 - <b><span>K</span>im's <span>F</span>ood <span>C</span>atering </b>. All right reserved | Design by Apoulah </p>
+                <div class="pull-right">
+                    <ul class="social">
+                        <li> <a href="#"> <i class="fa fa-facebook"></i></a></li>
+                        <li> <a href="#"> <i class="fa fa-twitter"></i></a></li>
+                        <li> <a href="#"> <i class="fa fa-instagram"></i></a></li>
+                        <li> <a href="#"> <i class="fa fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/chosen.jquery.js"></script>
+</body>
+</html>

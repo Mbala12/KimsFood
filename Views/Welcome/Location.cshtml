@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Location";
+}
+
+<style>
+    #map {
+        height: 500px;
+        width: 100%;
+    }
+</style>
+<br />
+<br />
+<script>
+    var map;
+    var marker;
+    var myPosition = { lat: -25.753560, lng: 28.211500 };
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: myPosition,
+            zoom: 16
+        });
+        marker = new google.maps.Marker({
+            position: myPosition,
+            map: map
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap" async defer></script>
+<div id="map"></div>
+
